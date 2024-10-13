@@ -86,10 +86,10 @@ const ListItem = ({ item }) => {
     <Link
       href={item.path}
       className={`flex gap-10 items-center p-5 hover:bg-slate-800 ${
-        pathName === item.path ? "active:bg-slate-800" : ""
+        pathName === item.path ? "bg-slate-800" : ""
       }`}
     >
-      {item.icon}
+      <div className="text-2xl">{item.icon}</div>
       {item.title}
     </Link>
   );
@@ -122,6 +122,10 @@ const Sidebar = () => {
           ))}
         </ul>
       </div>
+      <button className="flex p-5 my-5 mx-0 items-center gap-2 cursor-pointer rounded-lg bg-none border-none w-full hover:bg-slate-800">
+        <MdLogout />
+        Logout
+      </button>
     </div>
   );
 };
