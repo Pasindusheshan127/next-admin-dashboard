@@ -11,7 +11,7 @@ const UserPage = () => {
         <div className="flex items-center justify-between">
           <Search placeholder={"search for a user"} />
           <Link href="/dashboard/users/add">
-            <button className="p-3 bg-purple-900 font-bold text-gray-300 rounded-md cursor-pointer border-none">
+            <button className="p-2 bg-purple-900 font-bold text-gray-300 rounded-md cursor-pointer border-none">
               Add New
             </button>
           </Link>
