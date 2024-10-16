@@ -5,8 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const UserPage = async () => {
-  const users = await fetchUsers();
+const UserPage = async ({ searchParams }) => {
+  const q = searchParams?.q || "";
+  const users = await fetchUsers(q);
 
   console.log(users);
 
@@ -61,7 +62,9 @@ const UserPage = async () => {
                   </div>
                 </td>
                 <td className="p-3">{user.email}</td>
-                <td className="p-3">{user.createdAt}</td>
+                <td className="p-3">
+                  {user.createdAt?.toString().slice(4, 16)}
+                </td>
                 <td className="p-3">{user.isAdmin ? "Admin" : "Client"}</td>
                 <td className="p-3">{user.isActive ? "Active" : "passive"}</td>
                 <td className="p-3">
