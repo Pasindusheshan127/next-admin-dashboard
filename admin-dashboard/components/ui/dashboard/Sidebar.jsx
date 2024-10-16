@@ -17,15 +17,12 @@ import {
   MdLogout,
 } from "react-icons/md";
 
+// Define the menu items structure
 const menuItems = [
   {
     title: "Pages",
     list: [
-      {
-        title: "Dashboard",
-        path: "/dashboard",
-        icon: <MdDashboard />,
-      },
+      { title: "Dashboard", path: "/dashboard", icon: <MdDashboard /> },
       {
         title: "Users",
         path: "/dashboard/users",
@@ -46,21 +43,9 @@ const menuItems = [
   {
     title: "Analytics",
     list: [
-      {
-        title: "Revenue",
-        path: "/dashboard/revenue",
-        icon: <MdWork />,
-      },
-      {
-        title: "Reports",
-        path: "/dashboard/reports",
-        icon: <MdAnalytics />,
-      },
-      {
-        title: "Teams",
-        path: "/dashboard/teams",
-        icon: <MdPeople />,
-      },
+      { title: "Revenue", path: "/dashboard/revenue", icon: <MdWork /> },
+      { title: "Reports", path: "/dashboard/reports", icon: <MdAnalytics /> },
+      { title: "Teams", path: "/dashboard/teams", icon: <MdPeople /> },
     ],
   },
   {
@@ -71,60 +56,64 @@ const menuItems = [
         path: "/dashboard/settings",
         icon: <MdOutlineSettings />,
       },
-      {
-        title: "Help",
-        path: "/dashboard/help",
-        icon: <MdHelpCenter />,
-      },
+      { title: "Help", path: "/dashboard/help", icon: <MdHelpCenter /> },
     ],
   },
 ];
 
+// ListItem component to handle individual menu item display
 const ListItem = ({ item }) => {
   const pathName = usePathname();
   return (
     <Link
       href={item.path}
-      className={`flex gap-10 items-center p-5 hover:bg-slate-800 ${
+      className={`flex gap-4 items-center p-4 hover:bg-slate-800 ${
         pathName === item.path ? "bg-slate-800" : ""
       }`}
     >
       <div className="text-2xl">{item.icon}</div>
-      {item.title}
+      <span>{item.title}</span>
     </Link>
   );
 };
+
+// Sidebar component to display the menu
 const Sidebar = () => {
   return (
-    <div>
-      <div className="flex flex-col">
-        <div className="flex mb-4">
-          <Image
-            src="/noAvatar.png"
-            height={48}
-            width={48}
-            alt="userimg"
-            className="object-cover rounded-full "
-          />
-          <div className="flex flex-col ml-4">
-            <span className="font-semibold">mohan peris</span>
-            <span className="text-gray-300">Administrator</span>
-          </div>
+    <div className="w-full h-full bg-slate-900 p-5 rounded-lg">
+      {/* User profile section */}
+      <div className="flex items-center mb-5">
+        <Image
+          src="/noAvatar.png"
+          height={48}
+          width={48}
+          alt="userimg"
+          className="object-cover rounded-full"
+        />
+        <div className="ml-4">
+          <span className="font-semibold text-gray-100">Mohan Peris</span>
+          <span className="block text-sm text-gray-400">Administrator</span>
         </div>
-        <ul>
-          {menuItems.map((cat) => (
-            <li key={cat.title}>
-              {cat.title}
-              {cat.list.map((item) => (
+      </div>
+
+      {/* Menu list */}
+      <ul className="space-y-5">
+        {menuItems.map((category) => (
+          <li key={category.title} className="text-gray-300">
+            <span className="font-bold">{category.title}</span>
+            <ul className="ml-2 space-y-2">
+              {category.list.map((item) => (
                 <ListItem item={item} key={item.title} />
               ))}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <button className="flex p-5 my-5 mx-0 items-center gap-2 cursor-pointer rounded-lg bg-none border-none w-full hover:bg-slate-800">
-        <MdLogout />
-        Logout
+            </ul>
+          </li>
+        ))}
+      </ul>
+
+      {/* Logout button */}
+      <button className="flex items-center gap-2 p-4 mt-10 w-full text-gray-300 hover:bg-slate-800 rounded-lg">
+        <MdLogout className="text-2xl" />
+        <span>Logout</span>
       </button>
     </div>
   );

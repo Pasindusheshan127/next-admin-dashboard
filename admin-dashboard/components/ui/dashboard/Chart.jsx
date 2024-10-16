@@ -50,8 +50,10 @@ const data = [
 
 const Chart = () => {
   return (
-    <div className="h-[450px] bg-slate-900 p-5 rounded-lg">
-      <h2 className="font-semibold text-xl text-gray-300 mb-5">Weekly Recap</h2>
+    <div className="h-[450px] bg-[#1e1e2f] p-5 rounded-lg">
+      <h2 className="font-semibold text-xl text-[#E0E0E0] mb-5">
+        Weekly Recap
+      </h2>
       <ResponsiveContainer width="100%" height="90%">
         <LineChart
           width={500}
@@ -64,10 +66,17 @@ const Chart = () => {
             bottom: 5,
           }}
         >
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip contentStyle={{ background: "#151c2c", border: "none" }} />
-          <Legend />
+          <XAxis dataKey="name" stroke="#E0E0E0" />
+          <YAxis stroke="#E0E0E0" />
+          <Tooltip
+            contentStyle={{
+              background: "#151c2c",
+              border: "none",
+              color: "#E0E0E0",
+            }}
+            labelStyle={{ color: "#ffffff" }}
+          />
+          <Legend wrapperStyle={{ color: "#E0E0E0" }} />
           <Line
             type="monotone"
             dataKey="visit"

@@ -1,65 +1,76 @@
 import React from "react";
 
-const AddProductspage = () => {
+const AddProductsPage = () => {
   return (
-    <div>
-      <div className="bg-slate-900 p-5 raounded-lg mt-5 ">
-        <form
-          action=""
-          className="flex flex-wrap text-gray-300  mb-6 justify-between"
-        >
+    <div className="min-h-screen p-5 bg-[#151c2c]">
+      <div className="bg-slate-900 p-8 rounded-lg mt-5 shadow-lg">
+        <form className="flex flex-wrap text-gray-300 justify-between">
+          {/* Title Input */}
           <input
             type="text"
-            className="p-8 w-[45%] bg-transparent text-gray-300 border-2 border-[#2e374a] rounded-md mb-6"
+            className="p-4 w-[45%] bg-transparent text-gray-300 border-2 border-[#2e374a] rounded-md mb-6"
             name="title"
-            placeholder="title"
+            placeholder="Title"
             required
           />
+
+          {/* Category Selector */}
           <select
             name="cat"
-            id="cat"
-            className="p-8 w-[45%] bg-transparent text-gray-300 border-2 border-[#2e374a] rounded-md mb-6"
+            className="p-4 w-[45%] bg-transparent text-gray-300 border-2 border-[#2e374a] rounded-md mb-6"
           >
             <option value="general">Choose a Category</option>
             <option value="kitchen">Kitchen</option>
             <option value="phone">Phone</option>
             <option value="computer">Computer</option>
           </select>
+
+          {/* Price Input */}
           <input
             type="number"
-            placeholder="price"
+            placeholder="Price"
             name="price"
-            className="p-8 w-[45%] bg-transparent text-gray-300 border-2 border-[#2e374a] rounded-md mb-6"
+            className="p-4 w-[45%] bg-transparent text-gray-300 border-2 border-[#2e374a] rounded-md mb-6"
+            required
           />
+
+          {/* Stock Input */}
           <input
             type="number"
-            placeholder="stock"
+            placeholder="Stock"
             name="stock"
-            className="p-8 w-[45%] bg-transparent text-gray-300 border-2 border-[#2e374a] rounded-md mb-6"
+            className="p-4 w-[45%] bg-transparent text-gray-300 border-2 border-[#2e374a] rounded-md mb-6"
+            required
           />
+
+          {/* Color Input */}
           <input
             type="text"
-            placeholder="color"
+            placeholder="Color"
             name="color"
-            className="p-8 w-[45%] bg-transparent text-gray-300 border-2 border-[#2e374a] rounded-md mb-6"
+            className="p-4 w-[45%] bg-transparent text-gray-300 border-2 border-[#2e374a] rounded-md mb-6"
           />
+
+          {/* Size Input */}
           <input
             type="text"
-            placeholder="size"
+            placeholder="Size"
             name="size"
-            className="p-8 w-[45%] bg-transparent text-gray-300 border-2 border-[#2e374a] rounded-md mb-6"
+            className="p-4 w-[45%] bg-transparent text-gray-300 border-2 border-[#2e374a] rounded-md mb-6"
           />
+
+          {/* Description Textarea */}
           <textarea
             name="desc"
-            id="desc"
-            rows="16"
-            placeholder="description"
-            className="p-8 w-full bg-transparent text-gray-300 border-2 border-[#2e374a] rounded-md mb-6"
+            rows="6"
+            placeholder="Description"
+            className="p-4 w-full bg-transparent text-gray-300 border-2 border-[#2e374a] rounded-md mb-6"
           ></textarea>
 
+          {/* Submit Button */}
           <button
             type="submit"
-            className="w-full p-7 bg-teal-700 font-bold text-gray-300 border-none rounded-md cursor-pointer"
+            className="w-full p-4 bg-teal-700 font-bold text-gray-300 rounded-md hover:bg-teal-600 transition duration-300"
           >
             Submit
           </button>
@@ -69,4 +80,4 @@ const AddProductspage = () => {
   );
 };
 
-export default AddProductspage;
+export default AddProductsPage;

@@ -1,95 +1,88 @@
 import Pagination from "@/components/ui/dashboard/Pagination";
 import Search from "@/components/ui/dashboard/Search";
+import { fetchUsers } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const UserPage = () => {
+const UserPage = async () => {
+  const users = await fetchUsers();
+
+  console.log(users);
+
   return (
-    <div>
-      <div className="mt-5 bg-slate-900">
-        <div className="flex items-center justify-between">
-          <Search placeholder={"search for a user"} />
+    <div className="p-5 bg-[#151c2c] min-h-screen">
+      <div className="mt-5 bg-[#1e2a3b] p-6 rounded-lg shadow-lg">
+        {" "}
+        {/* Changed bg-slate-900 to bg-[#1e2a3b] */}
+        {/* Header Section */}
+        <div className="flex items-center justify-between mb-4">
+          <Search placeholder={"Search for a user"} />
           <Link href="/dashboard/users/add">
-            <button className="p-2 bg-purple-900 font-bold text-gray-300 rounded-md cursor-pointer border-none">
+            <button className="p-3 bg-[#4a0082] text-gray-200 font-bold rounded-md hover:bg-[#3e0070] transition duration-300">
+              {" "}
+              {/* Changed bg-purple-900 to bg-[#4a0082] */}
               Add New
             </button>
           </Link>
         </div>
-        <table className="w-full ">
-          <thead>
+        {/* Table */}
+        <table className="w-full table-auto bg-[#1a1e25] text-gray-200 rounded-lg overflow-hidden">
+          {" "}
+          {/* Changed bg-slate-800 to bg-[#1a1e25] */}
+          <thead className="bg-[#23292f]">
+            {" "}
+            {/* Changed bg-slate-700 to bg-[#23292f] */}
             <tr>
-              <td className="p-3">Name</td>
-              <td className="p-3">Email</td>
-              <td className="p-3">Created At</td>
-              <td className="p-3">Role</td>
-              <td className="p-3">Status</td>
-              <td className="p-3">Action</td>
+              <th className="p-3 text-left">Name</th>
+              <th className="p-3 text-left">Email</th>
+              <th className="p-3 text-left">Created At</th>
+              <th className="p-3 text-left">Role</th>
+              <th className="p-3 text-left">Status</th>
+              <th className="p-3 text-left">Action</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="p-3">
-                <div className="flex items-center gap-3">
-                  <Image
-                    src="/noavatar.png"
-                    alt="user"
-                    height={40}
-                    width={40}
-                    className="rounded-full"
-                  />
-                  roshan perera
-                </div>
-              </td>
-              <td className="p-3">roshan@gmail.com</td>
-              <td className="p-3">01.12.2023</td>
-              <td className="p-3">Admin</td>
-              <td className="p-3">action</td>
-              <td className="p-3">
-                <div className="flex gap-3">
-                  <Link href="/dashboard/users/test">
-                    <button className="p-1 text-gray-300 border-none cursor-pointer rounded-md font-bold bg-teal-700">
-                      View
+            {/* User Row */}
+            {users.map((user) => (
+              <tr key={user.id} className="border-b border-[#3b3f45]">
+                {" "}
+                {/* Changed border-slate-700 to border-[#3b3f45] */}
+                <td className="p-3">
+                  <div className="flex items-center gap-3">
+                    <Image
+                      src="/noavatar.png"
+                      alt="user"
+                      height={40}
+                      width={40}
+                      className="rounded-full object-cover"
+                    />
+                    {user.username}
+                  </div>
+                </td>
+                <td className="p-3">{user.email}</td>
+                <td className="p-3">{user.createdAt}</td>
+                <td className="p-3">{user.isAdmin ? "Admin" : "Client"}</td>
+                <td className="p-3">{user.isActive ? "Active" : "passive"}</td>
+                <td className="p-3">
+                  <div className="flex gap-3">
+                    <Link href={`/dashboard/users/${user.id}`}>
+                      <button className="p-2 bg-[#00897b] text-gray-200 font-bold rounded-md hover:bg-[#00796b] transition duration-300">
+                        {/* Changed bg-teal-700 to bg-[#00897b] */}
+                        View
+                      </button>
+                    </Link>
+                    <button className="p-2 bg-[#e53935] text-gray-200 font-bold rounded-md hover:bg-[#d32f2f] transition duration-300">
+                      {/* Changed bg-red-700 to bg-[#e53935] */}
+                      Delete
                     </button>
-                  </Link>
-                  <button className="p-1 text-gray-300 border-none cursor-pointer rounded-md font-bold bg-red-700">
-                    Delete
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td className="p-3">
-                <div className="flex items-center gap-3">
-                  <Image
-                    src="/noavatar.png"
-                    alt="user"
-                    height={40}
-                    width={40}
-                    className="rounded-full"
-                  />
-                  roshan perera
-                </div>
-              </td>
-              <td className="p-3">roshan@gmail.com</td>
-              <td className="p-3">01.12.2023</td>
-              <td className="p-3">Admin</td>
-              <td className="p-3">action</td>
-              <td className="p-3">
-                <div className="flex gap-3">
-                  <Link href="/dashboard/users/test">
-                    <button className="p-1 text-gray-300 border-none cursor-pointer rounded-md font-bold bg-teal-700">
-                      View
-                    </button>
-                  </Link>
-                  <button className="p-1 text-gray-300 border-none cursor-pointer rounded-md font-bold bg-red-700">
-                    Delete
-                  </button>
-                </div>
-              </td>
-            </tr>
+                  </div>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
+        {/* Pagination */}
         <Pagination />
       </div>
     </div>

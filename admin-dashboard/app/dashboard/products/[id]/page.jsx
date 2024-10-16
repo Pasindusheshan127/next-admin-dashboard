@@ -3,66 +3,78 @@ import React from "react";
 
 const SingleProductPage = () => {
   return (
-    <div className="flex gap-12 mt-5">
-      <div className="w-1/4 bg-slate-900 p-3 h-max">
-        <div className="w-full h-[300px] relative overflow-hidden text-gray-300 font-bold">
-          <Image src="/noavatar.png" alt="" fill className="rounded-md mb-2" />
+    <div className="flex gap-12 mt-5 p-5 bg-[#151c2c] text-gray-300">
+      <div className="w-1/4 bg-[#1e2a3b] p-6 h-max rounded-lg shadow-lg">
+        <div className="w-full h-[300px] relative overflow-hidden rounded-lg mb-4 shadow-md">
+          <Image
+            src="/noavatar.png"
+            alt="Product image"
+            fill
+            className="object-cover rounded-md"
+          />
         </div>
-        iPhone
+        <h2 className="text-center font-bold text-xl mb-2">iPhone</h2>
+        <p className="text-center text-sm">Latest Model</p>
       </div>
-      <div className="w-3/4 bg-slate-900 p-5 rounded-lg">
-        <form action="" className="flex flex-col">
-          <label className="font-[12px]">Title</label>
+
+      <div className="w-3/4 bg-[#1e2a3b] p-6 rounded-lg shadow-lg">
+        <form action="" className="flex flex-col gap-4">
+          <label className="text-sm font-semibold">Title</label>
           <input
-            className="p-5 border-2 border-[#2e374a] bg-slate-900 text-gray-300 mx--0 my-3"
+            className="p-4 border-2 border-[#2e374a] bg-[#1a1e25] rounded-lg focus:outline-none focus:border-teal-600 transition duration-300"
             type="text"
             name="title"
-            placeholder="title"
+            placeholder="Title"
           />
-          <label className="font-[12px]">Price</label>
+
+          <label className="text-sm font-semibold">Price</label>
           <input
-            className="p-5 border-2 border-[#2e374a] bg-slate-900 text-gray-300 mx--0 my-3"
-            type="email"
+            className="p-4 border-2 border-[#2e374a] bg-[#1a1e25] rounded-lg focus:outline-none focus:border-teal-600 transition duration-300"
+            type="number"
             name="price"
-            placeholder="price"
+            placeholder="Price"
           />
-          <label className="font-[12px]">Stock</label>
+
+          <label className="text-sm font-semibold">Stock</label>
           <input
-            className="p-5 border-2 border-[#2e374a] bg-slate-900 text-gray-300 mx--0 my-3"
+            className="p-4 border-2 border-[#2e374a] bg-[#1a1e25] rounded-lg focus:outline-none focus:border-teal-600 transition duration-300"
             type="text"
             name="stock"
-            placeholder="stock"
+            placeholder="Stock"
           />
-          <label className="font-[12px]">Color</label>
+
+          <label className="text-sm font-semibold">Color</label>
           <input
-            className="p-5 border-2 border-[#2e374a] bg-slate-900 text-gray-300 mx--0 my-3"
+            className="p-4 border-2 border-[#2e374a] bg-[#1a1e25] rounded-lg focus:outline-none focus:border-teal-600 transition duration-300"
             type="text"
             name="color"
-            placeholder="+color"
+            placeholder="Color"
           />
-          <label className="font-[12px]">Size</label>
+
+          <label className="text-sm font-semibold">Size</label>
           <textarea
-            className="p-5 border-2 border-[#2e374a] bg-slate-900 text-gray-300 mx--0 my-3"
+            className="p-4 border-2 border-[#2e374a] bg-[#1a1e25] rounded-lg focus:outline-none focus:border-teal-600 transition duration-300"
             name="size"
-            placeholder="size"
+            placeholder="Size"
           ></textarea>
-          <label className="font-[12px]">Cat</label>
+
+          <label className="text-sm font-semibold">Category</label>
           <select
-            className="p-5 border-2 border-[#2e374a] bg-slate-900 text-gray-300 mx--0 my-3"
+            className="p-4 border-2 border-[#2e374a] bg-[#1a1e25] rounded-lg focus:outline-none focus:border-teal-600 transition duration-300"
             name="cat"
-            id="cat"
           >
             <option value="kitchen">Kitchen</option>
             <option value="computers">Computers</option>
           </select>
-          <label className="font-[12px]">Description</label>
+
+          <label className="text-sm font-semibold">Description</label>
           <textarea
-            className="p-5 border-2 border-[#2e374a] bg-slate-900 text-gray-300 mx--0 my-3"
+            className="p-4 border-2 border-[#2e374a] bg-[#1a1e25] rounded-lg focus:outline-none focus:border-teal-600 transition duration-300"
             name="desc"
-            id="desc"
-            placeholder="description"
+            placeholder="Description"
           ></textarea>
-          <button className="w-full p-5 bg-teal-600 font-bold text-gray-300 border-none rounded-md">
+
+          <button className="w-full p-4 bg-teal-600 text-gray-300 font-bold rounded-lg hover:bg-teal-500 transition duration-300">
             Update
           </button>
         </form>
