@@ -7,7 +7,8 @@ import React from "react";
 
 const UserPage = async ({ searchParams }) => {
   const q = searchParams?.q || "";
-  const users = await fetchUsers(q);
+  const page = searchParams?.page || 1;
+  const { count, users } = await fetchUsers(q, page);
 
   console.log(users);
 
@@ -86,7 +87,7 @@ const UserPage = async ({ searchParams }) => {
           </tbody>
         </table>
         {/* Pagination */}
-        <Pagination />
+        <Pagination count={count} />
       </div>
     </div>
   );

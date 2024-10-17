@@ -1,10 +1,16 @@
 import Pagination from "@/components/ui/dashboard/Pagination";
 import Search from "@/components/ui/dashboard/Search";
+import { fetchProducts } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
+import { searchParams } from "next/navigation";
 import React from "react";
 
-const ProductsPage = () => {
+const ProductsPage = async () => {
+  const q = searchParams?.q || "";
+  const page = searchParams?.page || 1;
+  const { count, products } = await fetchProducts(q, page);
+
   return (
     <div className="p-5 bg-[#151c2c] min-h-screen">
       <div className="mt-5 bg-slate-900 p-6 rounded-lg shadow-lg">
@@ -32,68 +38,41 @@ const ProductsPage = () => {
           </thead>
           <tbody>
             {/* Product Row */}
-            <tr className="border-b border-slate-700">
-              <td className="p-3">
-                <div className="flex items-center gap-3">
-                  <Image
-                    src="/noproduct.jpg"
-                    alt="product"
-                    height={40}
-                    width={40}
-                    className="rounded-full object-cover"
-                  />
-                  iPhone
-                </div>
-              </td>
-              <td className="p-3">Latest iPhone model</td>
-              <td className="p-3">$2000</td>
-              <td className="p-3">12.08.2024</td>
-              <td className="p-3">72</td>
-              <td className="p-3">
-                <div className="flex gap-3">
-                  <Link href="/dashboard/products/test">
-                    <button className="p-2 bg-teal-700 text-gray-300 font-bold rounded-md hover:bg-teal-600 transition duration-300">
-                      View
+            {products.map((product) => (
+              <tr key={product.id} className="border-b border-slate-700">
+                <td className="p-3">
+                  <div className="flex items-center gap-3">
+                    <Image
+                      src="/noproduct.jpg"
+                      alt="product"
+                      height={40}
+                      width={40}
+                      className="rounded-full object-cover"
+                    />
+                    {product.title}
+                  </div>
+                </td>
+                <td className="p-3">{product.desc}</td>
+                <td className="p-3">{product.price}</td>
+                <td className="p-3">
+                  {product.createdAt.toString().splice(4, 16)}
+                </td>
+                <td className="p-3">{product.stock}</td>
+                <td className="p-3">72</td>
+                <td className="p-3">
+                  <div className="flex gap-3">
+                    <Link href={`/dashboard/products/${product.id}`}>
+                      <button className="p-2 bg-teal-700 text-gray-300 font-bold rounded-md hover:bg-teal-600 transition duration-300">
+                        View
+                      </button>
+                    </Link>
+                    <button className="p-2 bg-red-700 text-gray-300 font-bold rounded-md hover:bg-red-600 transition duration-300">
+                      Delete
                     </button>
-                  </Link>
-                  <button className="p-2 bg-red-700 text-gray-300 font-bold rounded-md hover:bg-red-600 transition duration-300">
-                    Delete
-                  </button>
-                </div>
-              </td>
-            </tr>
-
-            {/* Additional Product Row */}
-            <tr className="border-b border-slate-700">
-              <td className="p-3">
-                <div className="flex items-center gap-3">
-                  <Image
-                    src="/noproduct.jpg"
-                    alt="product"
-                    height={40}
-                    width={40}
-                    className="rounded-full object-cover"
-                  />
-                  iPhone
-                </div>
-              </td>
-              <td className="p-3">Latest iPhone model</td>
-              <td className="p-3">$2000</td>
-              <td className="p-3">12.08.2024</td>
-              <td className="p-3">72</td>
-              <td className="p-3">
-                <div className="flex gap-3">
-                  <Link href="/dashboard/products/test">
-                    <button className="p-2 bg-teal-700 text-gray-300 font-bold rounded-md hover:bg-teal-600 transition duration-300">
-                      View
-                    </button>
-                  </Link>
-                  <button className="p-2 bg-red-700 text-gray-300 font-bold rounded-md hover:bg-red-600 transition duration-300">
-                    Delete
-                  </button>
-                </div>
-              </td>
-            </tr>
+                  </div>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
 
