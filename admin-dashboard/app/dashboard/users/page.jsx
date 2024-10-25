@@ -10,19 +10,17 @@ const UserPage = async ({ searchParams }) => {
   const page = searchParams?.page || 1;
   const { count, users } = await fetchUsers(q, page);
 
-  console.log(users);
+  console.log("users:", users);
 
   return (
     <div className="p-5 bg-[#151c2c] min-h-screen">
       <div className="mt-5 bg-[#1e2a3b] p-6 rounded-lg shadow-lg">
-        {" "}
         {/* Changed bg-slate-900 to bg-[#1e2a3b] */}
         {/* Header Section */}
         <div className="flex items-center justify-between mb-4">
           <Search placeholder={"Search for a user"} />
           <Link href="/dashboard/users/add">
             <button className="p-3 bg-[#4a0082] text-gray-200 font-bold rounded-md hover:bg-[#3e0070] transition duration-300">
-              {" "}
               {/* Changed bg-purple-900 to bg-[#4a0082] */}
               Add New
             </button>
@@ -30,10 +28,8 @@ const UserPage = async ({ searchParams }) => {
         </div>
         {/* Table */}
         <table className="w-full table-auto bg-[#1a1e25] text-gray-200 rounded-lg overflow-hidden">
-          {" "}
           {/* Changed bg-slate-800 to bg-[#1a1e25] */}
           <thead className="bg-[#23292f]">
-            {" "}
             {/* Changed bg-slate-700 to bg-[#23292f] */}
             <tr>
               <th className="p-3 text-left">Name</th>

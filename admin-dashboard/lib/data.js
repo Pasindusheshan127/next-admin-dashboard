@@ -3,7 +3,7 @@ import { connectToDB } from "./utils";
 
 export const fetchUsers = async (q, page) => {
   const regex = new RegExp(q, "i");
-  const ITEMS_PER_PAGE = 1; // Changed variable name for clarity
+  const ITEMS_PER_PAGE = 6; // Changed variable name for clarity
   try {
     await connectToDB(); // Ensure DB connection
 
@@ -13,7 +13,7 @@ export const fetchUsers = async (q, page) => {
     }).countDocuments();
 
     // Perform the query with regex, limit, and skip applied correctly
-    const users = await User.find({ title: { $regex: regex } })
+    const users = await User.find({ username: { $regex: regex } }) // Corrected field here
       .limit(ITEMS_PER_PAGE) // Apply limit
       .skip(ITEMS_PER_PAGE * (page - 1)); // Apply pagination
 
@@ -27,7 +27,7 @@ export const fetchUsers = async (q, page) => {
 
 export const fetchProducts = async (q, page) => {
   const regex = new RegExp(q, "i");
-  const ITEMS_PER_PAGE = 1; // Changed variable name for clarity
+  const ITEMS_PER_PAGE = 6; // Changed variable name for clarity
   try {
     await connectToDB(); // Ensure DB connection
 

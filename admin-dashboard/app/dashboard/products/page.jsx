@@ -3,13 +3,14 @@ import Search from "@/components/ui/dashboard/Search";
 import { fetchProducts } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
-import { searchParams } from "next/navigation";
 import React from "react";
 
-const ProductsPage = async () => {
+const ProductsPage = async ({ searchParams }) => {
   const q = searchParams?.q || "";
   const page = searchParams?.page || 1;
   const { count, products } = await fetchProducts(q, page);
+
+  console.log("products:", products);
 
   return (
     <div className="p-5 bg-[#151c2c] min-h-screen">
@@ -55,7 +56,7 @@ const ProductsPage = async () => {
                 <td className="p-3">{product.desc}</td>
                 <td className="p-3">{product.price}</td>
                 <td className="p-3">
-                  {product.createdAt.toString().splice(4, 16)}
+                  {product.createdAt?.toString().splice(4, 16)}
                 </td>
                 <td className="p-3">{product.stock}</td>
                 <td className="p-3">72</td>
@@ -77,7 +78,7 @@ const ProductsPage = async () => {
         </table>
 
         {/* Pagination */}
-        <Pagination />
+        <Pagination count={count} />
       </div>
     </div>
   );
