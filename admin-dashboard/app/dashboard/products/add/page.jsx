@@ -1,10 +1,14 @@
+import { addProduct } from "@/lib/actions";
 import React from "react";
 
 const AddProductsPage = () => {
   return (
     <div className="min-h-screen p-5 bg-[#151c2c]">
       <div className="bg-slate-900 p-8 rounded-lg mt-5 shadow-lg">
-        <form className="flex flex-wrap text-gray-300 justify-between">
+        <form
+          action={addProduct}
+          className="flex flex-wrap text-gray-300 justify-between"
+        >
           {/* Title Input */}
           <input
             type="text"

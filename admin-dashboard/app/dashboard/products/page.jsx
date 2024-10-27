@@ -56,7 +56,7 @@ const ProductsPage = async ({ searchParams }) => {
                 <td className="p-3">{product.desc}</td>
                 <td className="p-3">{product.price}</td>
                 <td className="p-3">
-                  {product.createdAt?.toString().splice(4, 16)}
+                  {product.createdAt?.toString().slice(4, 16)}
                 </td>
                 <td className="p-3">{product.stock}</td>
                 <td className="p-3">72</td>

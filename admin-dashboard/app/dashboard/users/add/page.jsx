@@ -1,3 +1,4 @@
+import { addUser } from "@/lib/actions";
 import React from "react";
 
 const AddUserpage = () => {
@@ -5,7 +6,7 @@ const AddUserpage = () => {
     <div>
       <div className="bg-[#1e2a3b] p-5 rounded-lg mt-5">
         <form
-          action=""
+          action={addUser}
           className="flex flex-wrap text-gray-300 mb-6 justify-between"
         >
           <input
